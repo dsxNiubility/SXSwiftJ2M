@@ -21,15 +21,15 @@ class SXModel: NSObject,J2MProtocol {
     var demo:NSArray?
     
     static func customeClassMapping() -> [String : String]? {
-        return ["info":"Info","other":"NSArray"]
+        return ["info": "\(Info.self)", "other": "\(Info.self)", "others": "\(Info.self)", "demo": "\(Info.self)"];  // $$$$$   这么写是因为一个类完整的名称应该是命名空间加类名
     }
    
 }
 
 class SXSubModel:SXModel {
-    
+    var boy:String?
 }
 
 class Info: NSObject {
-    
+    var name:String?
 }

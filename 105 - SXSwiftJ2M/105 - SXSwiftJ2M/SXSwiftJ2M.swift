@@ -33,8 +33,50 @@ class SXSwiftJ2M {
     :returns: 实例化类的对象
     */
     func swiftObjWithDict(dict:NSDictionary,cls:AnyClass) ->AnyObject?{
-        return nil
-    }
+        
+        /// 取出模型类字典
+        let dictInfo = GetAllModelInfo(cls)
+        
+        /// 实例化对象
+        var obj:AnyObject = cls.alloc()
+        
+        for(k,v) in dictInfo{
+            
+            if let value:AnyObject? = dict[k]{
+//                println("要设置数值的 \(value) + key \(k)")
+                
+                /// 如果是基本数据类型直接kvc
+                if v.isEmpty && !(value === NSNull()){   // $$$$$
+                    obj.setValue(value, forKey: k)
+                }else {
+                
+                    let type = "\(value!.classForCoder)" // $$$$$ 取出某一个对象所属的类
+                    
+//                    println("自定义对象  \(value) \(k) \(v) 类型是 \(type) ")
+                    
+                    if type == "NSDictionary" {
+                        // value 是字典－> 将 value 的字典转换成 Info 的对象
+                        
+                        if let subObj:AnyObject? = swiftObjWithDict(value as!NSDictionary, cls: NSClassFromString(v)){
+                            
+                            obj.setValue(subObj, forKey: k)
+                        }
+                        
+                    } else if type == "NSArray" {
+                        // value 是数组
+                        // 如果是数组如何处理？ 遍历数组，继续处理数组中的字典
+                        if let subObj:AnyObject? = swiftObjWithArray(value as!NSArray, cls: NSClassFromString(v)){
+                            
+                            obj.setValue(subObj, forKey: k)
+                        }
+                    }
+                }
+            }
+        }
+        
+//        println(dictInfo)
+        return obj
+           }
     
    
 /// MARK:- 将数组转化成模型数组
@@ -47,9 +89,31 @@ class SXSwiftJ2M {
     :returns: 模型数组
     */
     func swiftObjWithArray(array:NSArray,cls:AnyClass) ->AnyObject?{
-        return nil
+        
+        var result = [AnyObject]()
+        
+        for value in array{
+            let type = "\(value.classForCoder)"   // $$$$$
+            
+            if type == "NSDictionary"{
+                
+                if let subObj:AnyObject = swiftObjWithDict(value as! NSDictionary, cls: cls){
+                    result.append(subObj)   // $$$$$
+                }
+                
+            } else if type == "NSArray"{
+                if let subObj:AnyObject = swiftObjWithArray(value as! NSArray, cls: cls){
+                    result.append(subObj)
+                }
+            }
+        }
+        
+        return result
     }
 
+    /// 缓存字典
+    var modleCache = [String:[String:String]]() // $$$$$
+    
 /// MARK:- 获取模型类的所有信息
     /**
     获取模型类的所有信息
@@ -59,11 +123,35 @@ class SXSwiftJ2M {
     :returns: 完整信息字典
     */
     func GetAllModelInfo(cls:AnyClass)->[String:String]{
-        return [String: String]()
+        
+        /// 先判断是否已经被缓存
+        if let cache = modleCache["\(cls)"]{
+            println("\(cls)类已经被缓存")
+            return cache
+        }
+        
+        /// 循环查找父类，但是不会处理NSObject
+        var currentcls:AnyClass = cls
+        
+        /// 定义模型字典
+        var dictInfo = [String:String]()
+        
+        /// 循环遍历直到NSObject
+        while let parent:AnyClass = currentcls.superclass(){  // $$$$$
+            
+            dictInfo.merge(GetModelInfo(currentcls))
+            
+            currentcls = parent
+        }
+        
+        /// 写入缓存
+        modleCache["\(cls)"] = dictInfo
+        
+        return dictInfo
     }
     
 /// MARK:- 获取给定类的信息
-    func GetModelInfo(cls:AnyClass) ->[String:String]!{
+    func GetModelInfo(cls:AnyClass) ->[String:String]{
         
         /// 判断是否遵循了协议，一旦遵循协议就是有自定义对象
         var mapping:[String : String]?
@@ -72,7 +160,7 @@ class SXSwiftJ2M {
             /// 得到属性字典
             mapping = cls.customeClassMapping()
             
-            println(mapping!)
+//            println(mapping!)
         }
         
         /// 必须用UInt32否则不能调用
@@ -155,6 +243,13 @@ class SXSwiftJ2M {
         /// 能够检测通过
     }
     
-    
-    
+}
+
+/// 相当于添加分类，泛型，拼接字典
+extension Dictionary{
+    mutating func merge<K,V>(dict:[K:V]){
+        for (k,v) in dict{
+            self.updateValue(v as! Value, forKey: k as! Key)
+        }
+    }
 }

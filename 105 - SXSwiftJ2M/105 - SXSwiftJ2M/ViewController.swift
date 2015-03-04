@@ -15,10 +15,12 @@ class ViewController: UIViewController {
     
         let json = loadJSON()
         let tools = SXSwiftJ2M()
-        println(tools.GetModelInfo(SXModel.self)!)
+        let obj = SXSwiftJ2M.sharedManager.swiftObjWithDict(json, cls: SXModel.self) as! SXModel
+//        println(tools.GetAllModelInfo(SXSubModel.self))
 //        let object = SXSwiftJ2M.sharedManager.loadIVars(SXModel.self)
 //
-//        println(object)
+        println("最后最后最后\(obj)")
+        println("最后\(obj.demo)")
     }
 
     func loadJSON() -> NSDictionary{
