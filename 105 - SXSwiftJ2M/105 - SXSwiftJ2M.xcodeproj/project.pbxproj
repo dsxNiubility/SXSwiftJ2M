@@ -15,6 +15,9 @@
 		1DB4CA421AA6D22C00CA4B38 /* _05___SXSwiftJ2MTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB4CA411AA6D22C00CA4B38 /* _05___SXSwiftJ2MTests.swift */; };
 		1DB4CA4F1AA6D2C800CA4B38 /* SXSwiftJ2M.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB4CA4E1AA6D2C800CA4B38 /* SXSwiftJ2M.swift */; };
 		1DB4CA501AA6D2C800CA4B38 /* SXSwiftJ2M.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB4CA4E1AA6D2C800CA4B38 /* SXSwiftJ2M.swift */; };
+		1DB4CA531AA6DE5900CA4B38 /* Model01.json in Resources */ = {isa = PBXBuildFile; fileRef = 1DB4CA521AA6DE5900CA4B38 /* Model01.json */; };
+		1DB4CA551AA6E1C200CA4B38 /* SXModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB4CA541AA6E1C200CA4B38 /* SXModel.swift */; };
+		1DB4CA561AA6E1C200CA4B38 /* SXModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB4CA541AA6E1C200CA4B38 /* SXModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +42,8 @@
 		1DB4CA401AA6D22C00CA4B38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1DB4CA411AA6D22C00CA4B38 /* _05___SXSwiftJ2MTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "_05___SXSwiftJ2MTests.swift"; sourceTree = "<group>"; };
 		1DB4CA4E1AA6D2C800CA4B38 /* SXSwiftJ2M.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXSwiftJ2M.swift; sourceTree = "<group>"; };
+		1DB4CA521AA6DE5900CA4B38 /* Model01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Model01.json; sourceTree = "<group>"; };
+		1DB4CA541AA6E1C200CA4B38 /* SXModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SXModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +85,9 @@
 		1DB4CA281AA6D22C00CA4B38 /* 105 - SXSwiftJ2M */ = {
 			isa = PBXGroup;
 			children = (
+				1DB4CA511AA6DE5900CA4B38 /* DataFile */,
 				1DB4CA2B1AA6D22C00CA4B38 /* AppDelegate.swift */,
+				1DB4CA541AA6E1C200CA4B38 /* SXModel.swift */,
 				1DB4CA2D1AA6D22C00CA4B38 /* ViewController.swift */,
 				1DB4CA4E1AA6D2C800CA4B38 /* SXSwiftJ2M.swift */,
 				1DB4CA2F1AA6D22C00CA4B38 /* Main.storyboard */,
@@ -114,6 +121,14 @@
 				1DB4CA401AA6D22C00CA4B38 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1DB4CA511AA6DE5900CA4B38 /* DataFile */ = {
+			isa = PBXGroup;
+			children = (
+				1DB4CA521AA6DE5900CA4B38 /* Model01.json */,
+			);
+			path = DataFile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,6 +175,7 @@
 		1DB4CA1E1AA6D22C00CA4B38 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = SX;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = shangxianDante;
 				TargetAttributes = {
@@ -198,6 +214,7 @@
 			files = (
 				1DB4CA311AA6D22C00CA4B38 /* Main.storyboard in Resources */,
 				1DB4CA361AA6D22C00CA4B38 /* LaunchScreen.xib in Resources */,
+				1DB4CA531AA6DE5900CA4B38 /* Model01.json in Resources */,
 				1DB4CA331AA6D22C00CA4B38 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,6 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DB4CA551AA6E1C200CA4B38 /* SXModel.swift in Sources */,
 				1DB4CA4F1AA6D2C800CA4B38 /* SXSwiftJ2M.swift in Sources */,
 				1DB4CA2E1AA6D22C00CA4B38 /* ViewController.swift in Sources */,
 				1DB4CA2C1AA6D22C00CA4B38 /* AppDelegate.swift in Sources */,
@@ -227,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DB4CA501AA6D2C800CA4B38 /* SXSwiftJ2M.swift in Sources */,
+				1DB4CA561AA6E1C200CA4B38 /* SXModel.swift in Sources */,
 				1DB4CA421AA6D22C00CA4B38 /* _05___SXSwiftJ2MTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,6 +434,7 @@
 				1DB4CA471AA6D22C00CA4B38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1DB4CA481AA6D22C00CA4B38 /* Build configuration list for PBXNativeTarget "105 - SXSwiftJ2MTests" */ = {
 			isa = XCConfigurationList;
@@ -423,6 +443,7 @@
 				1DB4CA4A1AA6D22C00CA4B38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

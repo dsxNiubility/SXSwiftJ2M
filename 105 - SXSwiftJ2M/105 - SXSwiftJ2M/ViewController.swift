@@ -10,16 +10,24 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var jsonArray:NSArray?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    
+        let json = loadJSON()
+        let obj = SXSwiftJ2M.sharedManager.swiftObjWithDict(json, cls: SXModel.self) as!SXModel
+
+        println(obj)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func loadJSON() -> NSDictionary{
+        
+        let path = NSBundle.mainBundle().pathForResource("Model01.json", ofType: nil)
+        let data = NSData(contentsOfFile: path!)
+        
+       return NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.allZeros, error: nil) as!NSDictionary
     }
-
 
 }
 

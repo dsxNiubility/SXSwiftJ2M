@@ -1,0 +1,50 @@
+{
+    "str1": "string 001",
+    "str2": "string 002",
+    "b": true,
+    "i": 100000,
+    "i8": 8,
+    "i16": 16,
+    "i32": 32,
+    "i64": 64,
+    "f": 10.001,
+    "d": null,
+    "num": null,
+    "namelist": ["zhangsan", "lisi", "wangwu"],
+    "info": {"name": "来啊"},
+    "other": [{"name": "zhangsan"},
+            {"name": "lisi"}],
+    "others": [{"name": "iPhone"},
+              {"name": "iOS"}],
+    "demo": [
+             [{"name": "demo1"},
+              {"name": "demo2"}],
+             [{"name": "omed1"},
+              {"name": "omed2"}]
+    ],
+    "news": {
+        "tlist":[
+                 {"tname": "头条", "ename": "iosnews"},
+                 {"tname": "社会", "ename": "shehui"}
+                 ],
+        "cname": "头条",
+        "cid": 12345678
+    },
+    "newslist": [{
+        "tlist":[
+                 {"tname": "头条", "ename": "iosnews"},
+                 {"tname": "社会", "ename": "shehui"}
+                 ],
+        "cname": "头条",
+        "cid": 12345678
+    },
+     {
+     "tlist":[
+              {"tname": "头条头条", "ename": "iosnews"},
+              {"tname": "社会社会", "ename": "shehui"}
+              ],
+     "cname": "社会头条",
+     "cid": 12345678
+     }
+     ]
+}
