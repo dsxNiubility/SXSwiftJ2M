@@ -8,7 +8,21 @@
 
 import UIKit
 
-class SXModel: NSObject {
+class SXModel: NSObject,J2MProtocol {
+    var str1:String?
+    var str2:NSString?
+    var b:Bool = true
+    var i:Int = 0
+    var f:Float = 0
+    var d:Double = 0
+    var info:Info?
+    var other:[Info]?
+    var others:NSArray?
+    var demo:NSArray?
+    
+    static func customeClassMapping() -> [String : String]? {
+        return ["info":"Info","other":"NSArray"]
+    }
    
 }
 

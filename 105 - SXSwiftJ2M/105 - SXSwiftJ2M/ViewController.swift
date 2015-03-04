@@ -9,16 +9,16 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    var jsonArray:NSArray?
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
         let json = loadJSON()
-        let obj = SXSwiftJ2M.sharedManager.swiftObjWithDict(json, cls: SXModel.self) as!SXModel
-
-        println(obj)
+        let tools = SXSwiftJ2M()
+        println(tools.GetModelInfo(SXModel.self)!)
+//        let object = SXSwiftJ2M.sharedManager.loadIVars(SXModel.self)
+//
+//        println(object)
     }
 
     func loadJSON() -> NSDictionary{
